@@ -12,9 +12,11 @@ public class IA {
 
     /**
      * @param args the command line arguments
-     */
+     */    
+    Minimax min = new Minimax();
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
 }
