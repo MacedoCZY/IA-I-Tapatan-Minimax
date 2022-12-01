@@ -12,19 +12,8 @@ public class Peca {
     public int x;
     public int y;
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
+    public Peca(int x, int y) {
         this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
         this.y = y;
     }
     

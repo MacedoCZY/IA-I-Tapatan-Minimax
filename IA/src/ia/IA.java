@@ -15,6 +15,10 @@ public class IA {
      */    
     Minimax min = new Minimax();
     
+    Matriz mt = new Matriz();
+    Peca Matrix[][] = {{mt.red1, null, mt.blue1},
+                       {mt.blue2, null, mt.red2},
+                       {mt.red3, null, mt.blue3}};
     
     public static void main(String[] args) {
         // TODO code application logic here
