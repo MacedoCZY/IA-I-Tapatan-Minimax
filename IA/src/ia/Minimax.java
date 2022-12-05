@@ -54,6 +54,7 @@ public class Minimax {
     public void setBest_val(float best_val) {
         this.best_val = best_val;
     }
+    /*
     public float get_Minimax(Nodo_C nodo, int depth, Boolean MAX){
         if ((depth == 0) || (nodo.nodo_terminal))
             return get_Heuristc(min.type_nodo); 
@@ -92,4 +93,5 @@ public class Minimax {
         
         return rst;
     }
+*/
 }
