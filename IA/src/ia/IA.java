@@ -17,14 +17,19 @@ public class IA {
     public static void main(String[] args) {
         // TODO code application logic here
         Matriz mt = new Matriz();
-        Tree tree = new Tree(mt.raizRed);
+        mt.Test();
+        /*
         Peca Matrix[][] = {{mt.red1, null, mt.blue1},
                            {mt.blue2, null, mt.red2},
                            {mt.red3, null, mt.blue3}};  
         
-        mt.possible_Pos(Matrix, mt.red1);
-        //mt.possible_Pos(Matrix, mt.red2);
-        //mt.possible_Pos(Matrix, mt.red3);
-       
+        mt.possiblePos(Matrix, mt.red1);
+        mt.possiblePos(Matrix, mt.red2);
+        mt.possiblePos(Matrix, mt.red3);
+        */
+        for(int k = 0; k < mt.tree.root.sams.size(); k++){
+            System.out.println(mt.tree.root.getSams().get(k).x + " " + mt.tree.root.getSams().get(k).y);
+        }
+        
     }
 }

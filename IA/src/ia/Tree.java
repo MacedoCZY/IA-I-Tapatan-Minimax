@@ -12,10 +12,18 @@ import java.util.List;
  * @author gusta
  */
 public class Tree {
-    private Node raiz;
-}
+    public Node root;
+    
+    public Tree(Peca dateRoot) {
+       root = new Node(dateRoot, 0);
+    }
 
-class Node {
-    private int conteudo;
-    private List<Node> filhos;
+    public Node getRoot() {
+        return root;
+    }
+    
+    public Node newNode(Peca dateRoot, int depth){
+        return new Node(dateRoot, depth);
+    }
+
 }

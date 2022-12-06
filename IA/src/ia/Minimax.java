@@ -9,17 +9,17 @@ package ia;
  * @author gusta
  */
 public class Minimax {
-    public Nodo_C type_nodo;
+    public Node type_nodo;
     public int depth;
     public Boolean MAX;
     public float utilit;
     public float best_val;
 
-    public Nodo_C getType_nodo() {
+    public Node getType_nodo() {
         return type_nodo;
     }
 
-    public void setType_nodo(Nodo_C type_nodo) {
+    public void setType_nodo(Node type_nodo) {
         this.type_nodo = type_nodo;
     }
 

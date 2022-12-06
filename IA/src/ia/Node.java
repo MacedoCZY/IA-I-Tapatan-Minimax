@@ -4,37 +4,43 @@
  */
 package ia;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author gusta
  */
-public class Node {
-    public Node right;
-    public Node left;
-    public int item;
-
-    public Node getRigth() {
-        return right;
+class Node {
+    public Peca pc;
+    public int depth;
+    public ArrayList<Peca> sams;
+    
+    public Node(Peca pc, int depth) {
+        this.sams = new ArrayList<Peca>();
+        this.pc = pc;
+        this.depth = depth;
     }
 
-    public void setRigth(Node rigth) {
-        this.right = rigth;
+    public Node addSam(Peca dataSam) {
+        Node n = new Node(dataSam, this.depth);
+        sams.add(dataSam);
+        return n;
     }
 
-    public Node getLeft() {
-        return left;
+    public Peca getData() {
+        return pc;
     }
 
-    public void setLeft(Node left) {
-        this.left = left;
-    }
-
-    public int getVal() {
-        return item;
-    }
-
-    public void setVal(int item) {
-        this.item = item;
+    public ArrayList<Peca> getSams() {
+        return sams;
     }
     
+    public int getDepth(){
+        return depth;
+    }
+    
+    public int getSize(){
+        return sams.size();
+    }
 }
