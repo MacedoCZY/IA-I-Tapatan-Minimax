@@ -32,140 +32,171 @@ public class Matriz {
                                  {0,0,0,0,1,0,1,0,1},
                                  {0,0,0,0,1,1,0,1,0}};
     
-    public Peca lokPos(int i){
-        Peca aux = new Peca(-1,-1);
+    public Peca[][] lokPos(int i, Peca pc, Peca Matrix[][]){
+        Peca Matrix1[][] = Matrix;
+        printMat(Matrix);
+        System.out.println("");
+        //printMat(Matrix1);
+        System.out.println("");
         switch(i){
             case 0:
-                aux.x = 0;
-                aux.y = 0;
-                return aux;
+                if(Matrix[0][0] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 0;
+                    pc.y = 0;
+                    Matrix1[0][0] = pc;
+                    return Matrix1;
+                }
             case 1:
-                aux.x = 0;
-                aux.y = 1;
-                return aux;
+                if(Matrix[0][1] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 0;
+                    pc.y = 1;
+                    Matrix1[0][1] = pc;
+                    return Matrix1;
+                }
             case 2:
-                aux.x = 0;
-                aux.y = 2;
-                return aux;
+                if(Matrix[0][2] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 0;
+                    pc.y = 2;
+                    Matrix1[0][2] = pc;
+                    return Matrix1;
+                }
             case 3:
-                aux.x = 1;
-                aux.y = 0;
-                return aux;
+                if(Matrix[1][0] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 1;
+                    pc.y = 0;
+                    Matrix1[1][0] = pc;
+                    return Matrix1;
+                }
             case 4:
-                aux.x = 1;
-                aux.y = 1;
-                return aux;
+                if(Matrix[1][1] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 1;
+                    pc.y = 1;
+                    Matrix1[1][1] = pc;
+                    return Matrix1;
+                }
             case 5:
-                aux.x = 1;
-                aux.y = 2;
-                return aux;
+                if((Matrix[1][2] == null)){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 1;
+                    pc.y = 2;
+                    Matrix1[1][2] = pc;
+                    return Matrix1;
+                }
             case 6:
-                aux.x = 2;
-                aux.y = 0;
-                return aux;
+                if(Matrix[2][0] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 2;
+                    pc.y = 0;
+                    Matrix1[2][0] = pc;
+                    return Matrix1;
+                }
             case 7:
-                aux.x = 2;
-                aux.y = 1;
-                return aux;
+                if(Matrix[2][1] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 2;
+                    pc.y = 1;
+                    Matrix1[2][1] = pc;
+                    return Matrix1;
+                }
             case 8:
-                aux.x = 2;
-                aux.y = 2;
-                return aux;
+                if(Matrix[2][2] == null){
+                    Matrix1[pc.x][pc.y] = null;
+                    pc.x = 2;
+                    pc.y = 2;
+                    Matrix1[2][2] = pc;
+                    return Matrix1;
+                }
         }
         return null;
     }
 
     public ArrayList possiblePos(Peca Matrix[][], Peca pc){
-        ArrayList<Peca> ret = new ArrayList<Peca>();
-        Peca aux = new Peca(-1,-1);
+        ArrayList<Peca[][]> ret = new ArrayList<Peca[][]>();
+        //Peca aux = new Peca(-1,-1);
         for(int i = 0; i <= 8; i++){
             if(pc.x == 0 && pc.y == 0){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 0 && pc.y == 1){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 0 && pc.y == 2){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 1 && pc.y == 0){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 1 && pc.y == 1){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 1 && pc.y == 2){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 2 && pc.y == 0){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 2 && pc.y == 1){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
             if(pc.x == 2 && pc.y == 2){
                 if(matrizPossiblePos[3*pc.x+pc.y][0+i] == 1){
-                    aux = lokPos(i);
-                    if(Matrix[aux.x][aux.y] == null){
-                        ret.add(lokPos(i));
-                    }
+                    ret.add(lokPos(i, pc, Matrix));
                 }
             }
         }
         return ret;
     }
     
+    public void printMat(Peca Matrix[][]){
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(Matrix[i][j] != null){
+                    System.out.print(Matrix[i][j].x + " " + Matrix[i][j].y + " ");
+                }else{
+                    System.out.print("null ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+    
     public void Test(){
-        Matriz mt = new Matriz();
         Peca Matrix[][] = {{red1, null, blue1},
                            {blue2, null, red2},
                            {red3, null, blue3}};
         
-        for(int i = 0; i < possiblePos(Matrix, red1).size(); i++){
+        /*for(int i = 0; i < possiblePos(Matrix, red1).size(); i++){
             tree.root.sams.add((Peca) possiblePos(Matrix, red1).get(i));
-        }
-        possiblePos(Matrix, red2).get(0);
-        possiblePos(Matrix, red3).get(0);
+        }*/
+        Peca aux[][] = {{red1, null, blue1},
+                           {blue2, null, red2},
+                           {red3, null, blue3}};
+        
+        possiblePos(Matrix, red2);
+        
+        //printMat(aux);
+       // possiblePos(Matrix, red3).get(0);
                 
         /*int play = 2;
         while(true){

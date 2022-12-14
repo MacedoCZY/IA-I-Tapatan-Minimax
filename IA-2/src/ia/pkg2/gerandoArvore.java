@@ -44,11 +44,19 @@ public class gerandoArvore {
     
     public List<int[][]> possibilidadeMov(int[][] Tab, List<int[]> cordComJogador, Boolean Jogador){
         int finaliza = 0;
-        List<int[][]> listaDeTabela = new ArrayList<int[][]>();
+        List<int[][]> listaDeTabelaAux = new ArrayList<>();
+        List<int[][]> listaDeTabela = new ArrayList<>(); 
+        int[][] aux = new int[3][3];
         while(finaliza < cordComJogador.size()){
             //System.out.println(cordComJogador.size());
             int[] vetCordComJogador = cordComJogador.get(finaliza);
-            listaDeTabela = analisaTabelaDeMovimentos(Tab, vetCordComJogador, Jogador);
+            listaDeTabelaAux = analisaTabelaDeMovimentos(Tab, vetCordComJogador, Jogador);
+            int cont = 0;
+            while(cont < listaDeTabelaAux.size()){
+                aux = listaDeTabelaAux.get(cont);
+                listaDeTabela.add(aux);
+                cont++;
+            }
             finaliza++;
         }
         return listaDeTabela;
@@ -56,9 +64,7 @@ public class gerandoArvore {
     
     public List<int[][]> analisaTabelaDeMovimentos(int[][] Tab, int[] Cordenadas, Boolean Jogador){
         int posNaTabelaDePos = (Cordenadas[0]*3) + Cordenadas[1];
-        System.out.println("x = " +posNaTabelaDePos);
-        System.out.println(Cordenadas[0] + "  " + Cordenadas[1]);
-        List<int[][]> listaDeTabela = new ArrayList<int[][]>();
+        List<int[][]> listaDeTabela = new ArrayList<>();
         if(posNaTabelaDePos == 0){
                 listaDeTabela = resolveTabelaDeRetorno(Tab, posNaTabelaDePos, Cordenadas, Jogador);
         }
@@ -89,7 +95,26 @@ public class gerandoArvore {
         return listaDeTabela;
     }
     
-    public int[] resolveTabelaGrande(int j){
+    public List<int[][]> resolveTabelaDeRetorno(int[][] Tab, int posNaTabelaDePos, int[] Cordenadas, Boolean Jogador){
+        List<int[][]> tabRetorno = new ArrayList<>();
+        int[][] tabelaAux = copiaTabela(Tab);
+        int[] guardaPosParaAnalise = new int[2];
+        for(int j = 0; j < 9; j++){
+            tabelaAux = copiaTabela(Tab);
+            if(tabelaDePossibilidades[posNaTabelaDePos][j] == 1){
+                guardaPosParaAnalise = resolveTabelaGrande(j);
+                if(Tab[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]] == 0){
+                    tabelaAux[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]] = quemEstaJogando(Jogador);
+                    tabelaAux[Cordenadas[0]][Cordenadas[1]] = 0;
+                    tabRetorno.add(tabelaAux);
+                    //printMatriz(tabelaAux);
+                } 
+            }
+        }
+        return tabRetorno;
+    }
+    
+        public int[] resolveTabelaGrande(int j){
         int[] cordenada = new int[2];
         switch(j){
             case 0:
@@ -132,35 +157,101 @@ public class gerandoArvore {
         return null;
     }
     
-    public List<int[][]> resolveTabelaDeRetorno(int[][] Tab, int posNaTabelaDePos, int[] Cordenadas, Boolean Jogador){
-        List<int[][]> tabRetorno = new ArrayList<int[][]>();
-        int[] guardaPosParaAnalise = new int[2];
-        for(int j = 0; j < 9; j++){
-            int[][] tabelaAux = Tab;
-            //System.out.println("j fora = "+j);
-            if(tabelaDePossibilidades[posNaTabelaDePos][j] == 1){
-                //System.out.println("j = "+j);
-                guardaPosParaAnalise = resolveTabelaGrande(j);
-                //System.out.println("val ="+guardaPosParaAnalise[0] +" "+ guardaPosParaAnalise[1]);
-                if(Tab[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]] == 0){
-                    //System.out.println("++++++Tab = "+ Tab[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]]);
-                    tabelaAux[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]] = quemEstaJogando(Jogador);
-                    tabelaAux[Cordenadas[0]][Cordenadas[1]] = 0;
-                    tabRetorno.add(tabelaAux);
-                    printMatriz(Tab);
-                    tabelaAux = Tab;
-                } 
-            }
+    public int testeGanhou(int[][] Mat, Boolean Jogador){
+        int contador = 0;
+        
+        int[][] cond1Vit = copiaTabela(Mat);
+        int[][] cond2Vit = copiaTabela(Mat);
+        int[][] cond3Vit = copiaTabela(Mat);
+        int[][] cond4Vit = copiaTabela(Mat);
+        int[][] cond5Vit = copiaTabela(Mat);
+        int[][] cond6Vit = copiaTabela(Mat);
+        int[][] cond7Vit = copiaTabela(Mat);
+        int[][] cond8Vit = copiaTabela(Mat);
+        cond1Vit[0] = new int[] {quemEstaJogando(Jogador), quemEstaJogando(Jogador), quemEstaJogando(Jogador)};
+        cond2Vit[1] = new int[] {quemEstaJogando(Jogador), quemEstaJogando(Jogador), quemEstaJogando(Jogador)};
+        cond3Vit[2] = new int[] {quemEstaJogando(Jogador), quemEstaJogando(Jogador), quemEstaJogando(Jogador)};
+        
+        cond4Vit[0][0] = quemEstaJogando(Jogador);
+        cond4Vit[1][0] = quemEstaJogando(Jogador);
+        cond4Vit[2][0] = quemEstaJogando(Jogador);
+        
+        cond5Vit[0][0] = quemEstaJogando(Jogador);
+        cond5Vit[1][1] = quemEstaJogando(Jogador);      
+        cond5Vit[2][2] = quemEstaJogando(Jogador);
+        
+        cond6Vit[0][2] = quemEstaJogando(Jogador);
+        cond6Vit[1][1] = quemEstaJogando(Jogador);
+        cond6Vit[2][0] = quemEstaJogando(Jogador);
+        
+        cond7Vit[1][0] = quemEstaJogando(Jogador);
+        cond7Vit[1][1] = quemEstaJogando(Jogador);
+        cond7Vit[2][1] = quemEstaJogando(Jogador);
+        
+        cond8Vit[0][2] = quemEstaJogando(Jogador);
+        cond8Vit[1][2] = quemEstaJogando(Jogador);
+        cond8Vit[2][2] = quemEstaJogando(Jogador);
+        
+        printMatriz(Mat);
+        printMatriz(cond1Vit);
+        if(comparaTabela(Mat, cond1Vit) == true){            
+            return 100;
         }
-        System.out.println("termino");
-        return tabRetorno;
-    }
+        if(comparaTabela(Mat, cond2Vit) == true){            
+            return 100;
+        }
+        if(comparaTabela(Mat, cond3Vit) == true){            
+            return 100;
+        }
+        if(comparaTabela(Mat, cond4Vit) == true){            
+            return 100;
+        }
+        if(comparaTabela(Mat, cond5Vit) == true){            
+            return 100;
+        }
+        if(comparaTabela(Mat, cond6Vit) == true){            
+            return 100;
+        }
+        if(comparaTabela(Mat, cond7Vit) == true){            
+            return 100;
+        }
+        if(comparaTabela(Mat, cond8Vit) == true){            
+            return 100;
+        }
+        return 0;
+    }    
     
     public int quemEstaJogando(Boolean Jogador){
         if(Jogador){
             return 2;
         }else{
             return 1;
+        }
+    }
+    
+    public int[][] copiaTabela(int[][] Tab){
+        int[][] copiaTab = new int[3][3];
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                copiaTab[i][j] = Tab[i][j];
+            }
+        }
+        return copiaTab;
+    }
+    
+    public boolean comparaTabela(int[][] Mat, int[][] cond1Vit){
+        int sum = 0;
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(Mat[i][j] == cond1Vit[i][j]){
+                    sum++;
+                }
+            }
+        }
+        if(sum == 9){
+            return true;
+        }else{
+            return false;
         }
     }
     

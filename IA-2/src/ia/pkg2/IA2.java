@@ -31,15 +31,20 @@ public class IA2 {
             //System.out.println(vet[0]+ " " +vet[1]);
             i++;
         }
-        List<int[][]> listaDeTabela = new ArrayList<int[][]>();
+        List<int[][]> listaDeTabela = new ArrayList<>();
         listaDeTabela = teste.possibilidadeMov(Tab.getTab(), cordComJogador, vezDoJogador);
         i = 0 ;
         while(i < listaDeTabela.size()){
             //System.out.println(listaDeTabela.size());
-            int[][] vet = listaDeTabela.get(0);
-            //teste.printMatriz(vet);
+            int[][] vet = listaDeTabela.get(i);
+            teste.printMatriz(vet);
             i++;
         }
+        int[][] Tabb = {{2, 2, 2},
+                       {1, 0, 1},
+                       {0, 0, 1}};
+        int tes = teste.testeGanhou(Tabb ,vezDoJogador);
+        System.out.println(tes);
     }
 
     
