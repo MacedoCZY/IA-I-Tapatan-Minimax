@@ -192,8 +192,8 @@ public class gerandoArvore {
         cond8Vit[1][2] = quemEstaJogando(Jogador);
         cond8Vit[2][2] = quemEstaJogando(Jogador);
         
-        printMatriz(Mat);
-        printMatriz(cond1Vit);
+        //printMatriz(Mat);
+        //printMatriz(cond1Vit);
         if(comparaTabela(Mat, cond1Vit) == true){            
             return 100;
         }

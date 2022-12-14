@@ -38,13 +38,11 @@ public class IA2 {
             //System.out.println(listaDeTabela.size());
             int[][] vet = listaDeTabela.get(i);
             teste.printMatriz(vet);
+            int tes = teste.testeGanhou(vet ,vezDoJogador);
+            System.out.println(tes);
             i++;
         }
-        int[][] Tabb = {{2, 2, 2},
-                       {1, 0, 1},
-                       {0, 0, 1}};
-        int tes = teste.testeGanhou(Tabb ,vezDoJogador);
-        System.out.println(tes);
+        
     }
 
     
