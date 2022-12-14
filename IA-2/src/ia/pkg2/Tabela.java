@@ -9,7 +9,7 @@ package ia.pkg2;
  * @author gusta
  */
 public class Tabela {
-    int[][] Tab = {{2, 0, 1},
+    public int[][] Tab = {{2, 0, 1},
                    {1, 0, 2},
                    {2, 0, 1}};
 

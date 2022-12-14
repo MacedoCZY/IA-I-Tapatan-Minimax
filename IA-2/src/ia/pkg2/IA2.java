@@ -34,16 +34,20 @@ public class IA2 {
         List<int[][]> listaDeTabela = new ArrayList<>();
         listaDeTabela = teste.possibilidadeMov(Tab.getTab(), cordComJogador, vezDoJogador);
         i = 0 ;
+        int[][] te = new int[3][3];
+        Hash rh = new Hash();
         while(i < listaDeTabela.size()){
             //System.out.println(listaDeTabela.size());
             int[][] vet = listaDeTabela.get(i);
-            teste.printMatriz(vet);
+            //teste.printMatriz(vet);
+            
             int tes = teste.testeGanhou(vet ,vezDoJogador);
-            System.out.println(tes);
+            //System.out.println(tes);
+
+            
+            rh.rash.put(vet, i);
+            System.out.println(teste.printMatriz(rh.getRash().keySet().));
             i++;
         }
-        
     }
-
-    
 }
