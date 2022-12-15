@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Node {
     public int[][] Tab;
+    public Node pai;
     public int Profundidade = 0;
     public List<Node> filho = new ArrayList<>();
 
