@@ -185,7 +185,7 @@ public class gerandoArvore {
         cond6Vit[1][1] = quemEstaJogando(Jogador);
         cond6Vit[2][0] = quemEstaJogando(Jogador);
         
-        cond7Vit[1][0] = quemEstaJogando(Jogador);
+        cond7Vit[0][1] = quemEstaJogando(Jogador);
         cond7Vit[1][1] = quemEstaJogando(Jogador);
         cond7Vit[2][1] = quemEstaJogando(Jogador);
         

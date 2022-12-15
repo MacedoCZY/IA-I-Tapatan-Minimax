@@ -14,16 +14,15 @@ import java.util.List;
 public class Node {
     public int[][] Tab;
     public int Profundidade = 0;
-    public Node filho;
-    public Node irmao;
+    public List<Node> filho = new ArrayList<>();
 
     public Node(int[][] Tab) {
         this.Tab = Tab;
-        this.filho = new Node(Tab);
     }
     
     public void Inserir(int[][] n){
         Node no = new Node(n);
-        irmao = this;
+        no.filho = new ArrayList<>();
+        this.filho.add(no);
     }
 }
