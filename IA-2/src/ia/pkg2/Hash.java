@@ -11,16 +11,18 @@ import java.util.HashMap;
  * @author gusta
  */
 public class Hash {
-    HashMap<int[][], Integer> rash = new HashMap<>();
+    HashMap<Node, Integer> rash = new HashMap<>();
 
     public Hash() {
     }
 
-    public HashMap<int[][], Integer> getRash() {
+    public HashMap<Node, Integer> getRash() {
         return rash;
     }
 
-    public void setRash(HashMap<int[][], Integer> rash) {
+    public void setRash(HashMap<Node, Integer> rash) {
         this.rash = rash;
     }
+
+
 }

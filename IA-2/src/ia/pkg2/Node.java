@@ -4,6 +4,7 @@
  */
 package ia.pkg2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,16 @@ import java.util.List;
 public class Node {
     public int[][] Tab;
     public int Profundidade = 0;
-    public List<Node> filho;
+    public Node filho;
+    public Node irmao;
+
+    public Node(int[][] Tab) {
+        this.Tab = Tab;
+        this.filho = new Node(Tab);
+    }
     
-    public void Inserir(){
-        Node n = new Node();
-        filho.add(n);
+    public void Inserir(int[][] n){
+        Node no = new Node(n);
+        irmao = this;
     }
 }

@@ -36,6 +36,7 @@ public class IA2 {
         i = 0 ;
         int[][] te = new int[3][3];
         Hash rh = new Hash();
+        Node Raiz = new Node(Tab.getTab());
         while(i < listaDeTabela.size()){
             //System.out.println(listaDeTabela.size());
             int[][] vet = listaDeTabela.get(i);
@@ -44,9 +45,9 @@ public class IA2 {
             int tes = teste.testeGanhou(vet ,vezDoJogador);
             //System.out.println(tes);
 
-            
-            rh.rash.put(vet, i);
-            System.out.println(teste.printMatriz(rh.getRash().keySet().));
+            Raiz.Inserir(vet);
+            rh.rash.put(Raiz, i);
+            teste.printMatriz(rh.getRash().keySet().iterator().next().filho.get(i).Tab);
             i++;
         }
     }
