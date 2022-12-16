@@ -5,10 +5,13 @@
 package ia.pkg2;
 
 
+import java.awt.event.MouseListener;
 import static java.lang.Integer.max;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,24 +30,38 @@ public class IA2 {
         Tabela Tab = new Tabela();
         gerandoArvore teste = new gerandoArvore();
         Boolean vezDoJogador = true;
-        /*
-        gerandoArvore teste = new gerandoArvore();
-        List<int[]> cordComJogador = teste.proucurarNaTabela(Tab.getTab(), vezDoJogador);
-        int i = 0 ;
-        while(i < cordComJogador.size()){
-            int[] vet = cordComJogador.get(i);
-            //System.out.println(vet[0]+ " " +vet[1]);
-            i++;
+        grafico graf = new grafico(Tab.Tab);
+        
+        graf.desenha();
+        
+        while(true){
+            
+            Node Raiz = new Node(Tab.getTab());
+            teste.inserirFunc(Raiz, vezDoJogador);
+            int[] resultado;
+            resultado = teste.noMaisProfundo(Raiz, vezDoJogador);
+            Tab.setTab(teste.melhorJogada(Raiz, resultado));
+            teste.printMatriz(Tab.getTab());
+            
+            grafico.Tab = Tab.getTab();
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IA2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            graf.repaint();
+            if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 100){
+                break;
+            }
+            
+            vezDoJogador = !vezDoJogador;
+            
+            
+            if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 100){
+                break;
+            }
+            break;
         }
-        List<int[][]> listaDeTabela = new ArrayList<>();
-        listaDeTabela = teste.possibilidadeMov(Tab.getTab(), cordComJogador, vezDoJogador);
-        i = 0 ;
-        int[][] te = new int[3][3];
-        //Hash rh = new Hash();*/
         
-        Node Raiz = new Node(Tab.getTab());
-        teste.inserirFunc(Raiz, vezDoJogador);
-        
-        teste.noMaisProfundo(Raiz, vezDoJogador);
     }
 }
