@@ -9,6 +9,8 @@ package ia.pkg2;
  * @author Gustavo
  */
 import java.awt.*;  
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.*;  
@@ -38,6 +40,14 @@ public grafico(int[][] cTab){
         
         nuevo[0] = new JButton();
         nuevo[0].setLocation(100, 570);
+        nuevo[0].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //your actions
+                System.out.println("entro");
+                ajustaTabela(oval[0].i, oval[0].j, oval[0].i, oval[0].j+1);
+            }
+        });
         nuevo[1] = new JButton();
         nuevo[1].setLocation(200, 570);    
         nuevo[2] = new JButton();
@@ -112,30 +122,38 @@ public grafico(int[][] cTab){
 
     }
     
+    public void ajustaTabela(int atX, int atY, int psX, int psY){
+        this.Tab[atX][atY] = 0;
+        this.Tab[psX][psY] = 1;
+        this.removeAll();
+        this.repaint();
+    }
+     
     public void calculaPos(elipseObject oval){
         
         gerandoArvore teste = new gerandoArvore();
         
+        this.removeAll();
+        
         System.out.println("pos atual = " + oval.i + " " + oval.j);
         teste.printMatriz(Tab);
         if((oval.i == 0 && oval.i == 0) || (oval.i == 2 && oval.j == 0)
-        || (oval.i == 2 && oval.j == 2) || (oval.i == 0 && oval.j == 2)){
+        || (oval.i == 2 && oval.j == 2) || (oval.i == 0 && oval.j == 2)
+        || (oval.i == 1 && oval.j == 1)){
             calculaTabelaPosDiag(oval);
             System.out.println("Diagonal");
         }else{
             calculaTabelaPos(oval);
             System.out.println("Não diagonal");
         }
-        
-        
     }
     
     public void calculaTabelaPosDiag(elipseObject oval){
         if(2 >= oval.j+1
            && (Tab[oval.i][oval.j+1]) == 0){
             System.out.println("1+1");
-            nuevo[0].setText(Integer.toString(oval.i*3+oval.j));
-            nuevo[0].setSize(200, 300);
+            nuevo[0].setText(Integer.toString(oval.i*3+oval.j+1));
+            nuevo[0].setSize(oval.i, 30);
             nuevo[0].setVisible(true);
             this.add(nuevo[0]);
             this.repaint();
@@ -146,7 +164,7 @@ public grafico(int[][] cTab){
         if(0 <= oval.j-1
            && (Tab[oval.i][oval.j-1]) == 0){
             System.out.println("1-1");
-            nuevo[1].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[1].setText(Integer.toString(oval.i*3+oval.j-1));
             nuevo[1].setSize(20, 30);
             nuevo[1].setVisible(true);
             this.add(nuevo[1]);
@@ -158,7 +176,7 @@ public grafico(int[][] cTab){
         if(2 >= oval.i+1  
            && (Tab[oval.i+1][oval.j]) == 0){
             System.out.println("+11");
-            nuevo[2].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[2].setText(Integer.toString((oval.i+1)*3+oval.j));
             nuevo[2].setSize(20, 30);
             nuevo[2].setVisible(true);
             this.add(nuevo[2]);
@@ -170,7 +188,7 @@ public grafico(int[][] cTab){
         if(0 <= oval.i-1
            && (Tab[oval.i-1][oval.j]) == 0){
             System.out.println("-11");
-            nuevo[3].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[3].setText(Integer.toString((oval.i-1)*3+oval.j));
             nuevo[3].setSize(20, 30);
             nuevo[3].setVisible(true);
             this.add(nuevo[3]);
@@ -182,7 +200,7 @@ public grafico(int[][] cTab){
         if(((2 >= oval.i+1) && (2 >= oval.j+1)) 
            && (Tab[oval.i+1][oval.j+1]) == 0){
             System.out.println("+1+1");
-            nuevo[4].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[4].setText(Integer.toString((oval.i+1)*3+oval.j+1));
             nuevo[4].setSize(20, 30);
             nuevo[4].setVisible(true);
             this.add(nuevo[4]);
@@ -194,7 +212,7 @@ public grafico(int[][] cTab){
         if(((0 <= oval.i-1) && (0 <= oval.j-1))
            && (Tab[oval.i-1][oval.j-1]) == 0){
             System.out.println("-1-1");
-            nuevo[5].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[5].setText(Integer.toString((oval.i-1)*3+oval.j-1));
             nuevo[5].setSize(20, 30);
             nuevo[5].setVisible(true);
             this.add(nuevo[5]);
@@ -206,7 +224,7 @@ public grafico(int[][] cTab){
         if(((2 >= oval.i+1) && (0 <= oval.j-1))
            && (Tab[oval.i+1][oval.j-1]) == 0){
             System.out.println("+1-1");
-            nuevo[6].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[6].setText(Integer.toString((oval.i+1)*3+oval.j-1));
             nuevo[6].setSize(20, 30);
             nuevo[6].setVisible(true);
             this.add(nuevo[6]);
@@ -218,10 +236,12 @@ public grafico(int[][] cTab){
         if(((0 <= oval.i-1) && (2 >= oval.j+1))
            && (Tab[oval.i-1][oval.j+1]) == 0){
             System.out.println("-1+1");
-            nuevo[7].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[7].setText(Integer.toString((oval.i-1)*3+oval.j+1));
             nuevo[7].setSize(20, 30);
             nuevo[7].setVisible(true);
             this.add(nuevo[7]);
+            this.repaint();
+            this.validate();
         }else{
 
         }
@@ -231,7 +251,7 @@ public grafico(int[][] cTab){
         if(2 >= oval.j+1
            && (Tab[oval.i][oval.j+1]) == 0){
             System.out.println("1+1");
-            nuevo[0].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[0].setText(Integer.toString(oval.i*3+oval.j+1));
             nuevo[0].setSize(200, 300);
             nuevo[0].setVisible(true);
             this.add(nuevo[0]);
@@ -243,7 +263,7 @@ public grafico(int[][] cTab){
         if(0 <= oval.j-1
            && (Tab[oval.i][oval.j-1]) == 0){
             System.out.println("1-1");
-            nuevo[1].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[1].setText(Integer.toString(oval.i*3+oval.j-1));
             nuevo[1].setSize(20, 30);
             nuevo[1].setVisible(true);
             this.add(nuevo[1]);
@@ -255,7 +275,7 @@ public grafico(int[][] cTab){
         if(2 >= oval.i+1  
            && (Tab[oval.i+1][oval.j]) == 0){
             System.out.println("+11");
-            nuevo[2].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[2].setText(Integer.toString((oval.i+1)*3+oval.j));
             nuevo[2].setSize(20, 30);
             nuevo[2].setVisible(true);
             this.add(nuevo[2]);
@@ -267,7 +287,7 @@ public grafico(int[][] cTab){
         if(0 <= oval.i-1
            && (Tab[oval.i-1][oval.j]) == 0){
             System.out.println("-11");
-            nuevo[3].setText(Integer.toString(oval.i*3+oval.j));
+            nuevo[3].setText(Integer.toString((oval.i-1)*3+oval.j));
             nuevo[3].setSize(20, 30);
             nuevo[3].setVisible(true);
             this.add(nuevo[3]);
@@ -303,7 +323,7 @@ public grafico(int[][] cTab){
         }else{
 
         }
-        */
+      
         if(((2 >= oval.i+1) && (0 <= oval.j-1))
            && (Tab[oval.i+1][oval.j-1]) == 0){
             System.out.println("+1-1");
@@ -325,14 +345,13 @@ public grafico(int[][] cTab){
             this.add(nuevo[7]);
         }else{
 
-        }        
+        }  
+        */
     }
     
     // funcao desenhar  
-    public void desenha(){  
-         
+    public void desenha(){
         JFrame Tela = new JFrame();
-        //System.out.println(boneco.getPos_atual().getX() + " " + boneco.getPos_atual().getY() );
         Tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         Tela.add(this);  
         Tela.setSize(1000, 700);  
@@ -352,9 +371,6 @@ public grafico(int[][] cTab){
         }
         return;
     }
-    /*if((e.getX() >= ((this.getWidth()/4)*(j+1))-25 && e.getX() <= ((this.getWidth()/4)*(j+1))+25)
-        && (e.getY() >= ((this.getHeight()/4)*(i+1))-25) && (e.getY() <= ((this.getHeight()/4)*(i+1))+25)){
-    */
 
     @Override
     public void mouseClicked(MouseEvent e) {
