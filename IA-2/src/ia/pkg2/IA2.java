@@ -40,6 +40,7 @@ public class IA2 {
         while(true){
             
             Node Raiz = new Node(Tab.getTab());
+            
             teste.inserirFunc(Raiz, vezDoJogador);
             int[] resultado;
             resultado = teste.noMaisProfundo(Raiz, vezDoJogador);
@@ -70,7 +71,7 @@ public class IA2 {
             }
             
             Tab.setTab(grafico.Tab);
-            
+
             if(teste.testeGanhou(Tab.getTab(), !vezDoJogador) == 1){
                 JOptionPane.showMessageDialog(null,"Ganhou");
                 grafico.telaF.dispose();
