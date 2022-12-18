@@ -56,7 +56,7 @@ public class IA2 {
             
             graf.repaint();
             
-            if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 100){
+            if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 1){
                 JOptionPane.showMessageDialog(null,"Ganhou");
                 grafico.telaF.dispose();
                 break;
@@ -70,7 +70,7 @@ public class IA2 {
             
             Tab.setTab(grafico.Tab);
             
-            if(teste.testeGanhou(Tab.getTab(), !vezDoJogador) == 100){
+            if(teste.testeGanhou(Tab.getTab(), !vezDoJogador) == 1){
                 JOptionPane.showMessageDialog(null,"Ganhou");
                 grafico.telaF.dispose();
                 break;

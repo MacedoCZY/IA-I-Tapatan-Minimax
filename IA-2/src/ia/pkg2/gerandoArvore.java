@@ -193,32 +193,80 @@ public class gerandoArvore {
         cond8Vit[1][2] = quemEstaJogando(Jogador);
         cond8Vit[2][2] = quemEstaJogando(Jogador);
         
-        //printMatriz(Mat);
-        //printMatriz(cond1Vit);
         if(comparaTabela(Mat, cond1Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond2Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond3Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond4Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond5Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond6Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond7Vit) == true){            
-            return 100;
+            return 1;
         }
         if(comparaTabela(Mat, cond8Vit) == true){            
-            return 100;
+            return 1;
         }
+        
+        cond1Vit[0] = new int[] {quemEstaJogando(!Jogador), quemEstaJogando(!Jogador), quemEstaJogando(!Jogador)};
+        cond2Vit[1] = new int[] {quemEstaJogando(!Jogador), quemEstaJogando(!Jogador), quemEstaJogando(!Jogador)};
+        cond3Vit[2] = new int[] {quemEstaJogando(!Jogador), quemEstaJogando(!Jogador), quemEstaJogando(!Jogador)};
+        
+        cond4Vit[0][0] = quemEstaJogando(!Jogador);
+        cond4Vit[1][0] = quemEstaJogando(!Jogador);
+        cond4Vit[2][0] = quemEstaJogando(!Jogador);
+        
+        cond5Vit[0][0] = quemEstaJogando(!Jogador);
+        cond5Vit[1][1] = quemEstaJogando(!Jogador);      
+        cond5Vit[2][2] = quemEstaJogando(!Jogador);
+        
+        cond6Vit[0][2] = quemEstaJogando(!Jogador);
+        cond6Vit[1][1] = quemEstaJogando(!Jogador);
+        cond6Vit[2][0] = quemEstaJogando(!Jogador);
+        
+        cond7Vit[0][1] = quemEstaJogando(!Jogador);
+        cond7Vit[1][1] = quemEstaJogando(!Jogador);
+        cond7Vit[2][1] = quemEstaJogando(!Jogador);
+        
+        cond8Vit[0][2] = quemEstaJogando(!Jogador);
+        cond8Vit[1][2] = quemEstaJogando(!Jogador);
+        cond8Vit[2][2] = quemEstaJogando(!Jogador);
+        
+        if(comparaTabela(Mat, cond1Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond2Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond3Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond4Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond5Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond6Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond7Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond8Vit) == true){            
+            return -1;
+        }
+        
         return 0;
     }    
     

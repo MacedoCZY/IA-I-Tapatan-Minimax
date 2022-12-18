@@ -393,12 +393,17 @@ public grafico(int[][] cTab){
     @Override
     public void mouseReleased(MouseEvent e) {
         //System.out.println(e.getX()+" "+e.getY());
+        int aux = 0;
         for(int i = 0; i < 3; i++){
             if((e.getButton() == 1) && oval[i].oval.contains(e.getX(), e.getY())){
                 calculaPos(oval[i]);
             }else{
-                
-                System.out.println("papinho");
+                aux++;
+                if(aux == 3){
+                    this.removeAll();
+                    this.repaint();
+                    this.validate();
+                }                
             }
         }
         return;
