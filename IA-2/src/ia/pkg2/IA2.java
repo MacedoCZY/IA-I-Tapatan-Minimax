@@ -9,9 +9,11 @@ import java.awt.event.MouseListener;
 import static java.lang.Integer.max;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +26,7 @@ public class IA2 {
      */
     static int profund = 0;
     static int profundAux = 0;
+    static Semaphore controle = new Semaphore(0);
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -44,23 +47,35 @@ public class IA2 {
             teste.printMatriz(Tab.getTab());
             
             grafico.Tab = Tab.getTab();
+            
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException ex) {
                 Logger.getLogger(IA2.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             graf.repaint();
+            
             if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 100){
+                JOptionPane.showMessageDialog(null,"Ganhou");
+                grafico.telaF.dispose();
                 break;
             }
             
-            vezDoJogador = !vezDoJogador;
+            try {
+                controle.acquire();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IA2.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
+            Tab.setTab(grafico.Tab);
             
-            if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 100){
+            if(teste.testeGanhou(Tab.getTab(), !vezDoJogador) == 100){
+                JOptionPane.showMessageDialog(null,"Ganhou");
+                grafico.telaF.dispose();
                 break;
             }
-            break;
+            
         }
         
     }
