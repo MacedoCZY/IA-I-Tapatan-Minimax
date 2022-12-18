@@ -43,6 +43,7 @@ public class IA2 {
             teste.inserirFunc(Raiz, vezDoJogador);
             int[] resultado;
             resultado = teste.noMaisProfundo(Raiz, vezDoJogador);
+          
             Tab.setTab(teste.melhorJogada(Raiz, resultado));
             teste.printMatriz(Tab.getTab());
             

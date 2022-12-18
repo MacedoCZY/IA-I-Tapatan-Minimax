@@ -4,6 +4,7 @@
  */
 package ia.pkg2;
 
+import static java.lang.Integer.max;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +103,7 @@ public class gerandoArvore {
         for(int j = 0; j < 9; j++){
             tabelaAux = copiaTabela(Tab);
             if(tabelaDePossibilidades[posNaTabelaDePos][j] == 1){
-                guardaPosParaAnalise = resolveTabelaGrande(j);
+                guardaPosParaAnalise = resolveTabelaDePossibilidade(j);
                 if(Tab[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]] == 0){
                     tabelaAux[guardaPosParaAnalise[0]][guardaPosParaAnalise[1]] = quemEstaJogando(Jogador);
                     tabelaAux[Cordenadas[0]][Cordenadas[1]] = 0;
@@ -115,7 +116,7 @@ public class gerandoArvore {
         return tabRetorno;
     }
     
-    public int[] resolveTabelaGrande(int j){
+    public int[] resolveTabelaDePossibilidade(int j){
         int[] cordenada = new int[2];
         switch(j){
             case 0:
@@ -335,7 +336,7 @@ public class gerandoArvore {
                 //System.out.println("quant filhos = " +no.pai.filho.size());
                 for(int i = 0; i < no.pai.filho.size(); i++){
                     //System.out.println("entrou for");
-                    xGanhou += teste.testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador);
+                    xGanhou = max(teste.testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador), xGanhou);
                     //System.out.println("ganhou = " + xGanhou);
                 }
                 //System.out.println("\nNew");
@@ -403,10 +404,24 @@ public class gerandoArvore {
         int cont = 0;
         int pos = 0;
         int maior = Integer.MIN_VALUE;
+        int aux = 0;
+        for(int i = 0; i < resultado.length; i++){
+            if(i == resultado.length-1){
+                System.out.print(resultado[i]);
+            }else{
+                System.out.print(resultado[i]+ ", ");
+            }
+        }
+        System.out.println("");
         while(cont < Raiz.filho.size()){
             if(maior < resultado[cont]){
+                for(int i = 0; i < resultado.length; i++){
+                    aux += resultado[i];
+                }
+                System.out.println("aux =" +aux);
                 pos = cont;
-                maior = resultado[cont];
+                System.out.println("pos" +pos);
+                maior = aux;
             }
             cont++;
         }
