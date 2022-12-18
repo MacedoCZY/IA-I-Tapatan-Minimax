@@ -5,6 +5,7 @@
 package ia.pkg2;
 
 import static java.lang.Integer.max;
+import static java.lang.Integer.min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -315,12 +316,39 @@ public class gerandoArvore {
         System.out.println("");
     }
     
+    
+    public int MinimaxR(Node no, int profundidade, Boolean MAX){
+        int melhorValor;
+        int v;
+        //System.out.println("prof =" +profundidade);
+        if(profundidade == 5 || no.filho.isEmpty()){
+            for(int i = 0; i < no.filho.size(); i++){
+                return testeGanhou(no.filho.get(i).Tab, MAX);
+            }
+        }
+        if(MAX){
+            melhorValor = Integer.MIN_VALUE;
+            for(int i = 0; i < no.filho.size(); i++){
+                v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, true);
+                melhorValor = max(melhorValor, v);
+            }
+            return melhorValor;
+        }else{
+            melhorValor = Integer.MAX_VALUE;
+            for(int i = 0; i < no.filho.size(); i++){
+                v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, false);
+                melhorValor = min(melhorValor, v);
+            }
+            return melhorValor;
+        }
+    }
+    
     static int xGanhou = 0;
     public int Minimax(Node no, int cont, Boolean vezDoJogador){
-        gerandoArvore teste = new gerandoArvore();
         int aux2 = 0;
         int aux = 0;
-        //while(aux <= no.filho.size()){
+        while(aux <= no.filho.size()){
+            System.out.println("sabotagem =" +no.filho.size());
             //System.out.println("filho size = " + no.filho.size());
             //System.out.println("aux = " + aux);
             aux++;
@@ -346,16 +374,16 @@ public class gerandoArvore {
                     System.out.println("i= " + (i));
                     printMatriz(no.pai.filho.get(i).Tab);
                     System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-                    if(teste.testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == 1){
+                    if(testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == 1){
                         aux2++;
                     }
                 }
                 for(int i = 0; i < no.pai.filho.size(); i++){
                     //System.out.println("entrou for");
-                    if(teste.testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == 1){
+                    if(testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == 1){
                         xGanhou += 1;
                     }
-                    if(teste.testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == -1){
+                    if(testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == -1){
                         if(aux2 > 0){
                             xGanhou += -1*aux2;
                         }
@@ -367,7 +395,7 @@ public class gerandoArvore {
                 //System.out.println("\nNew");
      
                 return xGanhou;
-            //}
+            }
         }
         
         System.out.println("ovo\n");
@@ -379,7 +407,12 @@ public class gerandoArvore {
         int[] resultado = new int[no.filho.size()];
         while(contador < no.filho.size()){
             //System.out.println("tamanho la = "+no.filho.size());
-            resultado[contador] = Minimax(no.filho.get(contador), contador, vezDoJogador);
+            resultado[contador] = MinimaxR((no.filho.get(contador)), no.filho.get(contador).Profundidade, vezDoJogador);
+            /*
+            System.out.println("===============================");
+            printMatriz(no.filho.get(contador).Tab);
+            System.out.println("===============================");
+            */
             //System.out.println(resultado[contador]);
             xGanhou = 0;
             contador++;
@@ -392,13 +425,15 @@ public class gerandoArvore {
     public void inserirFunc(Node no, Boolean vezDoJogador){
         //Tabela Tab = new Tabela();
         int cont = 0;
+        System.out.println("***************************************");
+        printMatriz(no.Tab);
+        System.out.println("***************************************");
         
-        gerandoArvore teste = new gerandoArvore();
-        List<int[]> cordComJogador = teste.proucurarNaTabela(no.Tab, vezDoJogador);
+        List<int[]> cordComJogador = proucurarNaTabela(no.Tab, vezDoJogador);
         
         List<int[][]> listaDeTabela = new ArrayList<>();
         int[][] Tabela;
-        listaDeTabela = teste.possibilidadeMov(no.Tab, cordComJogador, vezDoJogador);
+        listaDeTabela = possibilidadeMov(no.Tab, cordComJogador, vezDoJogador);
         int cont2 = 0;
         
         while(cont2 < listaDeTabela.size()){
@@ -406,16 +441,16 @@ public class gerandoArvore {
             no2.Profundidade = no.Profundidade + 1;
             no2.pai = no;
             no.filho.add(no2);
-            /*
+         
             System.out.println("========================================");
             printMatriz(listaDeTabela.get(cont2));
             System.out.println("========================================");
-            */
+            
             cont2++;
         }
         //System.out.println("++++++++++++++++++++++++++++++++++++++++");
         while(cont < no.filho.size()){
-            if(teste.testeGanhou(no.filho.get(cont).Tab, vezDoJogador) == 0 && no.Profundidade <= 4){
+            if(testeGanhou(no.filho.get(cont).Tab, !vezDoJogador) == 0 && no.Profundidade <= 5){
                 //teste.printMatriz(no.filho.get(cont).Tab);
                 //System.out.println(no.Profundidade);
                 try{
@@ -423,15 +458,17 @@ public class gerandoArvore {
                 }catch(Exception e){
                     System.out.println("cu");
                 }
-                /*
-                System.out.println("========================================");
+                
+                System.out.println("////////////////////////////////////////");
                 printMatriz(no.filho.get(cont).Tab);
-                System.out.println("Profundidade =" + no.filho.get(cont).Profundidade);
-                System.out.println("========================================");
-                */
+                System.out.println("Profundidade =" + no.filho.get(cont).Profundidade + "," +quemEstaJogando(!vezDoJogador));
+                System.out.println("////////////////////////////////////////");
+
                 inserirFunc(no.filho.get(cont), !vezDoJogador);
-            }else if(teste.testeGanhou(no.filho.get(cont).Tab, vezDoJogador) == 1){
-                //teste.printMatriz(no.filho.get(cont).Tab);
+            }else if(testeGanhou(no.filho.get(cont).Tab, !vezDoJogador) == -1){
+                System.out.println("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/");
+                printMatriz(no.filho.get(cont).Tab);
+                System.out.println("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/");
             }
             cont++;
         }

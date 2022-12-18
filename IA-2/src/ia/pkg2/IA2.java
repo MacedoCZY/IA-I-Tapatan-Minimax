@@ -46,7 +46,7 @@ public class IA2 {
             resultado = teste.noMaisProfundo(Raiz, vezDoJogador);
           
             Tab.setTab(teste.melhorJogada(Raiz, resultado));
-            teste.printMatriz(Tab.getTab());
+            //teste.printMatriz(Tab.getTab());
             
             grafico.Tab = Tab.getTab();
             
