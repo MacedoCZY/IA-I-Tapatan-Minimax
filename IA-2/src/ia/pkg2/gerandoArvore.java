@@ -434,7 +434,7 @@ public class gerandoArvore {
     }
 
     static int menorProfundi = Integer.MAX_VALUE;
-
+    /*
     public int funcAlteranativa(Node no){
             int varia = Integer.MAX_VALUE;
             if(no.filho.size() == 0){
@@ -448,17 +448,17 @@ public class gerandoArvore {
                     return varia;
             }
     }
-    /*
+    */
     public void acharNoMenosProfundo(Node no){
             for(int i = 0; i <= no.filho.size(); i++){
                     if(no.filho.size() != 0 && i != no.filho.size()){
-                            acharNoMenosProfundo(no.filho.get(i));
+                        acharNoMenosProfundo(no.filho.get(i));
                     }else{
-                            menorProfundi = min(no.Profundidade, menorProfundi);
+                        menorProfundi = min(no.Profundidade, menorProfundi);
                     }
             }
     }
-    */
+    
     public void MinimaxR(Node no, int profundidade, Boolean MAX){
         int melhorValor;
         int v;
@@ -528,30 +528,28 @@ public class gerandoArvore {
 		*/
     }
     
-	static int xGanhou = 0;
+    static int xGanhou = 0;
     static int minR = 0;
     public int[] noMaisProfundo(Node no, Boolean vezDoJogador){
         int contador = 0;
         int[] resultado = new int[no.filho.size()];
 		
-            menorProfundi = funcAlteranativa(no);
-            System.out.println("Menor profundi ="+menorProfundi);
-			
-		
-            System.out.println("tamanho la = "+no.filho.size());
         while(contador < no.filho.size()){
-			
+            
             System.out.println("===============================");
             printMatriz(no.filho.get(contador).Tab);
             System.out.println("===============================");
-			
+	    
+            acharNoMenosProfundo(no.filho.get(contador));
+            
             MinimaxR(no.filho.get(contador), no.filho.get(contador).Profundidade, vezDoJogador);
             resultado[contador] = minR;
             
             //System.out.println(resultado[contador]);
             xGanhou = 0;
             contador++;
-			minR = 0;
+            minR = 0;   
+            menorProfundi = Integer.MAX_VALUE;            
             //System.out.println("=====================================================");
         }
         

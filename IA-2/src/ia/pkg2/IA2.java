@@ -28,7 +28,7 @@ public class IA2 {
     static int profundAux = 0;
     static Semaphore controle = new Semaphore(0);
     static int profundidade;
-	static int prof = 2;
+    static int prof = 5;
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -80,7 +80,7 @@ public class IA2 {
                 grafico.telaF.dispose();
                 break;
             }
-			Raiz = null;
+            Raiz = null;
             System.gc();
         }
     }
