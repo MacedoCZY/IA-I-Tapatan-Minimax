@@ -425,92 +425,92 @@ public class gerandoArvore {
     }
 
 	
-	public int imparizacaum(int prof){
-		if(prof%2 == 0){
-			return prof-1;
-		}else{
-			return prof;
-		}
-	}
-	
-	static int menorProfundi = Integer.MAX_VALUE;
-	
-	public int funcAlteranativa(Node no){
-		int varia = Integer.MAX_VALUE;
-		if(no.filho.size() == 0){
-			return no.Profundidade;
-		}else{
-			for(int i = 0; i < no.filho.size(); i++){
-				if(funcAlteranativa(no.filho.get(i)) < varia){
-					varia = funcAlteranativa(no.filho.get(i));
-				}
-			}
-			return varia;
-		}
-	}
-	/*
-	public void acharNoMenosProfundo(Node no){
-		for(int i = 0; i <= no.filho.size(); i++){
-			if(no.filho.size() != 0 && i != no.filho.size()){
-				acharNoMenosProfundo(no.filho.get(i));
-			}else{
-				menorProfundi = min(no.Profundidade, menorProfundi);
-			}
-		}
-	}
-	*/
+    public int imparizacaum(int prof){
+            if(prof%2 == 0){
+                    return prof-1;
+            }else{
+                    return prof;
+            }
+    }
+
+    static int menorProfundi = Integer.MAX_VALUE;
+
+    public int funcAlteranativa(Node no){
+            int varia = Integer.MAX_VALUE;
+            if(no.filho.size() == 0){
+                    return no.Profundidade;
+            }else{
+                    for(int i = 0; i < no.filho.size(); i++){
+                            if(funcAlteranativa(no.filho.get(i)) < varia){
+                                    varia = funcAlteranativa(no.filho.get(i));
+                            }
+                    }
+                    return varia;
+            }
+    }
+    /*
+    public void acharNoMenosProfundo(Node no){
+            for(int i = 0; i <= no.filho.size(); i++){
+                    if(no.filho.size() != 0 && i != no.filho.size()){
+                            acharNoMenosProfundo(no.filho.get(i));
+                    }else{
+                            menorProfundi = min(no.Profundidade, menorProfundi);
+                    }
+            }
+    }
+    */
     public void MinimaxR(Node no, int profundidade, Boolean MAX){
         int melhorValor;
         int v;
         //System.out.println("prof =" +profundidade);
-		/*
-		System.out.println("///////////////////////////////////////////");
-		printMatriz(no.Tab);
-		System.out.println("size dos filhos do no = " + no.filho.size());
-		System.out.println("teste no =" +testeGanhou(no.Tab, MAX));
-		System.out.println("profundidade no = " + no.Profundidade);
-		System.out.println("size do no atual = "+ no.pai.filho.size());
-		System.out.println("///////////////////////////////////////////");
-		*/
-		
-		for(int i = 0; i < no.filho.size(); i++){
-			if(!no.filho.get(i).filho.isEmpty() && no.filho.get(i).Profundidade <= menorProfundi){
-				
-				/*
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-				System.out.println("profundidade filho = " + no.filho.get(i).Profundidade);
-				System.out.println("size filho = "+ no.filho.size());
-				printMatriz(no.filho.get(i).Tab);
-				System.out.println("teste filho =" +testeGanhou(no.filho.get(i).Tab, MAX));
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-				*/
-				MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, true);
-			}else{
-				for(int k = 0; k < no.filho.size(); k++){
-					minR += testeGanhou(no.filho.get(k).Tab, true)*Math.pow(6, IA2.prof-no.filho.get(k).Profundidade);
-				}
-			}
-		}
-			
-		if(no.filho.isEmpty()){
-			System.out.println("entro=========================================");
-			minR += testeGanhou(no.Tab, true)*Math.pow(6, IA2.prof-no.Profundidade);
-		}
-		/*
-		if(profundidade == IA2.prof || no.filho.size() == 0){
-			for(int i = 0; i < no.filho.size(); i++){
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
-				System.out.println("profundidade filho = " + no.filho.get(i).Profundidade);
-				System.out.println("size filho = "+ no.filho.size());
-				printMatriz(no.filho.get(i).Tab);
-				System.out.println("teste filho =" +testeGanhou(no.filho.get(i).Tab, MAX));
+            /*
+            System.out.println("///////////////////////////////////////////");
+            printMatriz(no.Tab);
+            System.out.println("size dos filhos do no = " + no.filho.size());
+            System.out.println("teste no =" +testeGanhou(no.Tab, MAX));
+            System.out.println("profundidade no = " + no.Profundidade);
+            System.out.println("size do no atual = "+ no.pai.filho.size());
+            System.out.println("///////////////////////////////////////////");
+            */
+
+            for(int i = 0; i < no.filho.size(); i++){
+                    if(!no.filho.get(i).filho.isEmpty() && no.filho.get(i).Profundidade <= menorProfundi){
+
+                        /*
+                        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                        System.out.println("profundidade filho = " + no.filho.get(i).Profundidade);
+                        System.out.println("size filho = "+ no.filho.size());
+                        printMatriz(no.filho.get(i).Tab);
+                        System.out.println("teste filho =" +testeGanhou(no.filho.get(i).Tab, MAX));
+                        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                        */
+                        MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, true);
+                    }else{
+                        for(int k = 0; k < no.filho.size(); k++){
+                                minR += testeGanhou(no.filho.get(k).Tab, true)*Math.pow(6, IA2.prof-no.filho.get(k).Profundidade);
+                        }
+                    }
+            }
+
+            if(no.filho.isEmpty()){
+                System.out.println("entro=========================================");
+                minR += testeGanhou(no.Tab, true)*Math.pow(6, IA2.prof-no.Profundidade);
+            }
+            /*
+            if(profundidade == IA2.prof || no.filho.size() == 0){
+                    for(int i = 0; i < no.filho.size(); i++){
+                        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+                        System.out.println("profundidade filho = " + no.filho.get(i).Profundidade);
+                        System.out.println("size filho = "+ no.filho.size());
+                        printMatriz(no.filho.get(i).Tab);
+                        System.out.println("teste filho =" +testeGanhou(no.filho.get(i).Tab, MAX));
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
             }
         }
         if(MAX){
             melhorValor = Integer.MIN_VALUE;
             for(int i = 0; i < no.filho.size(); i++){
-				System.out.println("MAX");
+                System.out.println("MAX");
                 v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, true);
                 //System.out.println("v =" +v);
                 melhorValor = max(melhorValor, v);
@@ -520,7 +520,7 @@ public class gerandoArvore {
             melhorValor = Integer.MAX_VALUE;
             for(int i = 0; i < no.filho.size(); i++){
                 System.out.println("MIN");
-				v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, false);
+                v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, false);
                 melhorValor = min(melhorValor, v);
             }
             return melhorValor;
@@ -534,19 +534,19 @@ public class gerandoArvore {
         int contador = 0;
         int[] resultado = new int[no.filho.size()];
 		
-		menorProfundi = funcAlteranativa(no);
-		System.out.println("Menor profundi ="+menorProfundi);
+            menorProfundi = funcAlteranativa(no);
+            System.out.println("Menor profundi ="+menorProfundi);
 			
 		
-		System.out.println("tamanho la = "+no.filho.size());
+            System.out.println("tamanho la = "+no.filho.size());
         while(contador < no.filho.size()){
 			
-			System.out.println("===============================");
+            System.out.println("===============================");
             printMatriz(no.filho.get(contador).Tab);
             System.out.println("===============================");
 			
-			MinimaxR(no.filho.get(contador), no.filho.get(contador).Profundidade, vezDoJogador);
-			resultado[contador] = minR;
+            MinimaxR(no.filho.get(contador), no.filho.get(contador).Profundidade, vezDoJogador);
+            resultado[contador] = minR;
             
             //System.out.println(resultado[contador]);
             xGanhou = 0;
