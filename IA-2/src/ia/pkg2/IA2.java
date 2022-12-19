@@ -27,6 +27,8 @@ public class IA2 {
     static int profund = 0;
     static int profundAux = 0;
     static Semaphore controle = new Semaphore(0);
+    static int profundidade;
+	static int prof = 2;
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -36,6 +38,7 @@ public class IA2 {
         grafico graf = new grafico(Tab.Tab);
         
         graf.desenha();
+
         
         while(true){
             
@@ -59,7 +62,7 @@ public class IA2 {
             graf.repaint();
             
             if(teste.testeGanhou(Tab.getTab(), vezDoJogador) == 1){
-                JOptionPane.showMessageDialog(null,"Ganhou");
+                JOptionPane.showMessageDialog(null,"Perdeu");
                 grafico.telaF.dispose();
                 break;
             }
@@ -77,8 +80,8 @@ public class IA2 {
                 grafico.telaF.dispose();
                 break;
             }
-            
+			Raiz = null;
+            System.gc();
         }
-        
     }
 }

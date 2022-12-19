@@ -43,7 +43,7 @@ public class gerandoArvore {
         }
         return cordComJogador;
     }
-    
+	
     public List<int[][]> possibilidadeMov(int[][] Tab, List<int[]> cordComJogador, Boolean Jogador){
         int finaliza = 0;
         List<int[][]> listaDeTabelaAux = new ArrayList<>();
@@ -160,9 +160,117 @@ public class gerandoArvore {
         return null;
     }
     
-    public int testeGanhou(int[][] Mat, Boolean Jogador){
-        int contador = 0;
+    public int testeGanhouArvore(int[][] Mat){
+        int[][] cond1Vit = copiaTabela(Mat);
+        int[][] cond2Vit = copiaTabela(Mat);
+        int[][] cond3Vit = copiaTabela(Mat);
+        int[][] cond4Vit = copiaTabela(Mat);
+        int[][] cond5Vit = copiaTabela(Mat);
+        int[][] cond6Vit = copiaTabela(Mat);
+        int[][] cond7Vit = copiaTabela(Mat);
+        int[][] cond8Vit = copiaTabela(Mat);
+        cond1Vit[0] = new int[] {2, 2, 2};
+        cond2Vit[1] = new int[] {2, 2, 2};
+        cond3Vit[2] = new int[] {2, 2, 2};
         
+        cond4Vit[0][0] = 2;
+        cond4Vit[1][0] = 2;
+        cond4Vit[2][0] = 2;
+        
+        cond5Vit[0][0] = 2;
+        cond5Vit[1][1] = 2;      
+        cond5Vit[2][2] = 2;
+        
+        cond6Vit[0][2] = 2;
+        cond6Vit[1][1] = 2;
+        cond6Vit[2][0] = 2;
+        
+        cond7Vit[0][1] = 2;
+        cond7Vit[1][1] = 2;
+        cond7Vit[2][1] = 2;
+        
+        cond8Vit[0][2] = 2;
+        cond8Vit[1][2] = 2;
+        cond8Vit[2][2] = 2;
+        
+        if(comparaTabela(Mat, cond1Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond2Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond3Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond4Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond5Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond6Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond7Vit) == true){            
+            return 1;
+        }
+        if(comparaTabela(Mat, cond8Vit) == true){            
+            return 1;
+        }
+        
+        cond1Vit[0] = new int[] {1, 1, 1};
+        cond2Vit[1] = new int[] {1, 1, 1};
+        cond3Vit[2] = new int[] {1, 1, 1};
+        
+        cond4Vit[0][0] = 1;
+        cond4Vit[1][0] = 1;
+        cond4Vit[2][0] = 1;
+        
+        cond5Vit[0][0] = 1;
+        cond5Vit[1][1] = 1;      
+        cond5Vit[2][2] = 1;
+        
+        cond6Vit[0][2] = 1;
+        cond6Vit[1][1] = 1;
+        cond6Vit[2][0] = 1;
+        
+        cond7Vit[0][1] = 1;
+        cond7Vit[1][1] = 1;
+        cond7Vit[2][1] = 1;
+        
+        cond8Vit[0][2] = 1;
+        cond8Vit[1][2] = 1;
+        cond8Vit[2][2] = 1;
+        
+        if(comparaTabela(Mat, cond1Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond2Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond3Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond4Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond5Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond6Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond7Vit) == true){            
+            return -1;
+        }
+        if(comparaTabela(Mat, cond8Vit) == true){            
+            return -1;
+        }
+        
+        return 0;
+    }
+    
+    public int testeGanhou(int[][] Mat, Boolean Jogador){
         int[][] cond1Vit = copiaTabela(Mat);
         int[][] cond2Vit = copiaTabela(Mat);
         int[][] cond3Vit = copiaTabela(Mat);
@@ -315,107 +423,135 @@ public class gerandoArvore {
         }
         System.out.println("");
     }
-    
-    
-    public int MinimaxR(Node no, int profundidade, Boolean MAX){
+
+	
+	public int imparizacaum(int prof){
+		if(prof%2 == 0){
+			return prof-1;
+		}else{
+			return prof;
+		}
+	}
+	
+	static int menorProfundi = Integer.MAX_VALUE;
+	
+	public int funcAlteranativa(Node no){
+		int varia = Integer.MAX_VALUE;
+		if(no.filho.size() == 0){
+			return no.Profundidade;
+		}else{
+			for(int i = 0; i < no.filho.size(); i++){
+				if(funcAlteranativa(no.filho.get(i)) < varia){
+					varia = funcAlteranativa(no.filho.get(i));
+				}
+			}
+			return varia;
+		}
+	}
+	/*
+	public void acharNoMenosProfundo(Node no){
+		for(int i = 0; i <= no.filho.size(); i++){
+			if(no.filho.size() != 0 && i != no.filho.size()){
+				acharNoMenosProfundo(no.filho.get(i));
+			}else{
+				menorProfundi = min(no.Profundidade, menorProfundi);
+			}
+		}
+	}
+	*/
+    public void MinimaxR(Node no, int profundidade, Boolean MAX){
         int melhorValor;
         int v;
         //System.out.println("prof =" +profundidade);
-        if(profundidade == 5 || no.filho.isEmpty()){
-            for(int i = 0; i < no.filho.size(); i++){
-                return testeGanhou(no.filho.get(i).Tab, MAX);
+		/*
+		System.out.println("///////////////////////////////////////////");
+		printMatriz(no.Tab);
+		System.out.println("size dos filhos do no = " + no.filho.size());
+		System.out.println("teste no =" +testeGanhou(no.Tab, MAX));
+		System.out.println("profundidade no = " + no.Profundidade);
+		System.out.println("size do no atual = "+ no.pai.filho.size());
+		System.out.println("///////////////////////////////////////////");
+		*/
+		
+		for(int i = 0; i < no.filho.size(); i++){
+			if(!no.filho.get(i).filho.isEmpty() && no.filho.get(i).Profundidade <= menorProfundi){
+				
+				/*
+				System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+				System.out.println("profundidade filho = " + no.filho.get(i).Profundidade);
+				System.out.println("size filho = "+ no.filho.size());
+				printMatriz(no.filho.get(i).Tab);
+				System.out.println("teste filho =" +testeGanhou(no.filho.get(i).Tab, MAX));
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+				*/
+				MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, true);
+			}else{
+				for(int k = 0; k < no.filho.size(); k++){
+					minR += testeGanhou(no.filho.get(k).Tab, true)*Math.pow(6, IA2.prof-no.filho.get(k).Profundidade);
+				}
+			}
+		}
+			
+		if(no.filho.isEmpty()){
+			System.out.println("entro=========================================");
+			minR += testeGanhou(no.Tab, true)*Math.pow(6, IA2.prof-no.Profundidade);
+		}
+		/*
+		if(profundidade == IA2.prof || no.filho.size() == 0){
+			for(int i = 0; i < no.filho.size(); i++){
+				System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+				System.out.println("profundidade filho = " + no.filho.get(i).Profundidade);
+				System.out.println("size filho = "+ no.filho.size());
+				printMatriz(no.filho.get(i).Tab);
+				System.out.println("teste filho =" +testeGanhou(no.filho.get(i).Tab, MAX));
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
             }
         }
         if(MAX){
             melhorValor = Integer.MIN_VALUE;
             for(int i = 0; i < no.filho.size(); i++){
+				System.out.println("MAX");
                 v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, true);
+                //System.out.println("v =" +v);
                 melhorValor = max(melhorValor, v);
             }
             return melhorValor;
         }else{
             melhorValor = Integer.MAX_VALUE;
             for(int i = 0; i < no.filho.size(); i++){
-                v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, false);
+                System.out.println("MIN");
+				v = MinimaxR(no.filho.get(i), no.filho.get(i).Profundidade+1, false);
                 melhorValor = min(melhorValor, v);
             }
             return melhorValor;
         }
+		*/
     }
     
-    static int xGanhou = 0;
-    public int Minimax(Node no, int cont, Boolean vezDoJogador){
-        int aux2 = 0;
-        int aux = 0;
-        while(aux <= no.filho.size()){
-            System.out.println("sabotagem =" +no.filho.size());
-            //System.out.println("filho size = " + no.filho.size());
-            //System.out.println("aux = " + aux);
-            aux++;
-            if(!no.filho.isEmpty() && aux < no.filho.size()){ // olha se a lista de filho é nula
-                //System.out.println("entro if");
-                System.out.println("========================================");
-                printMatriz(no.filho.get(aux-1).Tab);
-                System.out.println("aux-1 = " + (aux-1));
-                System.out.println("========================================");
-                Minimax(no.filho.get(aux-1), cont, vezDoJogador);
-            }else{
-                //System.out.println("slasdlkashdkjashdkasjh");
-
-                //System.out.println(cont);
-                //System.out.println("size ===== " +no.filho.size());
-
-                //System.out.println("quant filhos = " +no.pai.filho.size());
-                System.out.println("-------------------------");
-                printMatriz(no.pai.Tab);
-                System.out.println("-------------------------");
-                for(int i = 0; i < no.pai.filho.size(); i++){
-                    System.out.println("\n\n+++++++++++++++++++++++++++++++++++++++++");
-                    System.out.println("i= " + (i));
-                    printMatriz(no.pai.filho.get(i).Tab);
-                    System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-                    if(testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == 1){
-                        aux2++;
-                    }
-                }
-                for(int i = 0; i < no.pai.filho.size(); i++){
-                    //System.out.println("entrou for");
-                    if(testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == 1){
-                        xGanhou += 1;
-                    }
-                    if(testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador) == -1){
-                        if(aux2 > 0){
-                            xGanhou += -1*aux2;
-                        }
-                    }
-                    //System.out.println("aux2 =" +aux2);
-                    //xGanhou += teste.testeGanhou(no.pai.filho.get(i).Tab, vezDoJogador);
-                    //System.out.println("ganhou = " + xGanhou);
-                }
-                //System.out.println("\nNew");
-     
-                return xGanhou;
-            }
-        }
-        
-        System.out.println("ovo\n");
-        return 0;
-    }
-    
+	static int xGanhou = 0;
+    static int minR = 0;
     public int[] noMaisProfundo(Node no, Boolean vezDoJogador){
         int contador = 0;
         int[] resultado = new int[no.filho.size()];
+		
+		menorProfundi = funcAlteranativa(no);
+		System.out.println("Menor profundi ="+menorProfundi);
+			
+		
+		System.out.println("tamanho la = "+no.filho.size());
         while(contador < no.filho.size()){
-            //System.out.println("tamanho la = "+no.filho.size());
-            resultado[contador] = MinimaxR((no.filho.get(contador)), no.filho.get(contador).Profundidade, vezDoJogador);
-            /*
-            System.out.println("===============================");
+			
+			System.out.println("===============================");
             printMatriz(no.filho.get(contador).Tab);
             System.out.println("===============================");
-            */
+			
+			MinimaxR(no.filho.get(contador), no.filho.get(contador).Profundidade, vezDoJogador);
+			resultado[contador] = minR;
+            
             //System.out.println(resultado[contador]);
             xGanhou = 0;
             contador++;
+			minR = 0;
             //System.out.println("=====================================================");
         }
         
@@ -425,10 +561,11 @@ public class gerandoArvore {
     public void inserirFunc(Node no, Boolean vezDoJogador){
         //Tabela Tab = new Tabela();
         int cont = 0;
+        /*
         System.out.println("***************************************");
         printMatriz(no.Tab);
         System.out.println("***************************************");
-        
+        */
         List<int[]> cordComJogador = proucurarNaTabela(no.Tab, vezDoJogador);
         
         List<int[][]> listaDeTabela = new ArrayList<>();
@@ -441,39 +578,39 @@ public class gerandoArvore {
             no2.Profundidade = no.Profundidade + 1;
             no2.pai = no;
             no.filho.add(no2);
-         
+            /*
             System.out.println("========================================");
             printMatriz(listaDeTabela.get(cont2));
+            System.out.println("resutlado = " + testeGanhouArvore(no.filho.get(cont2).Tab));
             System.out.println("========================================");
-            
+            */
             cont2++;
         }
         //System.out.println("++++++++++++++++++++++++++++++++++++++++");
         while(cont < no.filho.size()){
-            if(testeGanhou(no.filho.get(cont).Tab, !vezDoJogador) == 0 && no.Profundidade <= 5){
+            if(testeGanhouArvore(no.filho.get(cont).Tab) == 0 && no.Profundidade <= IA2.prof){
                 //teste.printMatriz(no.filho.get(cont).Tab);
                 //System.out.println(no.Profundidade);
                 try{
                     //TimeUnit.SECONDS.sleep(1/4);
                 }catch(Exception e){
-                    System.out.println("cu");
                 }
-                
+                /*
                 System.out.println("////////////////////////////////////////");
                 printMatriz(no.filho.get(cont).Tab);
                 System.out.println("Profundidade =" + no.filho.get(cont).Profundidade + "," +quemEstaJogando(!vezDoJogador));
                 System.out.println("////////////////////////////////////////");
-
+                */
                 inserirFunc(no.filho.get(cont), !vezDoJogador);
-            }else if(testeGanhou(no.filho.get(cont).Tab, !vezDoJogador) == -1){
-                System.out.println("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/");
-                printMatriz(no.filho.get(cont).Tab);
-                System.out.println("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/");
+            }else if(testeGanhouArvore(no.filho.get(cont).Tab) != 0){
+                //System.out.println("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/");
+                //printMatriz(no.filho.get(cont).Tab);
+                //System.out.println("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/");
             }
             cont++;
         }
     }
-    
+
     public int[][] melhorJogada(Node Raiz, int[] resultado){
         int cont = 0;
         int pos = 0;

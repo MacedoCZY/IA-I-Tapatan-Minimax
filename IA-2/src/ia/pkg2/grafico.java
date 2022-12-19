@@ -120,10 +120,10 @@ public grafico(int[][] cTab){
         gerandoArvore teste = new gerandoArvore();
         
         this.removeAll();
-        
+        System.out.println(oval.i+ " "+oval.j);
         //System.out.println("pos atual = " + oval.i + " " + oval.j);
         //teste.printMatriz(Tab);
-        if((oval.i == 0 && oval.i == 0) || (oval.i == 2 && oval.j == 0)
+        if((oval.i == 0 && oval.j == 0) || (oval.i == 2 && oval.j == 0)
         || (oval.i == 2 && oval.j == 2) || (oval.i == 0 && oval.j == 2)
         || (oval.i == 1 && oval.j == 1)){
             calculaTabelaPosDiag(oval);
@@ -137,14 +137,13 @@ public grafico(int[][] cTab){
     public void calculaTabelaPosDiag(elipseObject oval){
         if(2 >= oval.j+1
            && (Tab[oval.i][oval.j+1]) == 0){
-            System.out.println("1+1");
-            nuevo[0].setText(Integer.toString(oval.i*3+oval.j+1));
+            //System.out.println("1+1");
+            nuevo[0].setText(Integer.toString(oval.i*3+oval.j+1+1));
             nuevo[0].setSize(20, 30);
             nuevo[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[0].getX()+""+nuevo[0].getY());
                 ajustaTabela(oval.i, oval.j, oval.i, oval.j+1);
             }
             });
@@ -157,17 +156,16 @@ public grafico(int[][] cTab){
         }
         if(0 <= oval.j-1
            && (Tab[oval.i][oval.j-1]) == 0){
-            System.out.println("1-1");
-            nuevo[1].setText(Integer.toString(oval.i*3+oval.j-1));
+            //System.out.println("1-1");
+            nuevo[1].setText(Integer.toString(oval.i*3+oval.j-1+1));
             nuevo[1].setSize(20, 30);
             nuevo[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[1].getX()+""+nuevo[1].getY());
                 ajustaTabela(oval.i, oval.j, oval.i, oval.j-1);
             }
-             });  
+            });  
             nuevo[1].setVisible(true);
             this.add(nuevo[1]);
             this.repaint();
@@ -177,14 +175,13 @@ public grafico(int[][] cTab){
         }
         if(2 >= oval.i+1  
            && (Tab[oval.i+1][oval.j]) == 0){
-            System.out.println("+11");
-            nuevo[2].setText(Integer.toString((oval.i+1)*3+oval.j));
+            //System.out.println("+11");
+            nuevo[2].setText(Integer.toString((oval.i+1)*3+oval.j+1));
             nuevo[2].setSize(20, 30);
             nuevo[2].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[2].getX()+""+nuevo[2].getY());
                 ajustaTabela(oval.i, oval.j, oval.i+1, oval.j);
             }
             });
@@ -197,14 +194,13 @@ public grafico(int[][] cTab){
         }
         if(0 <= oval.i-1
            && (Tab[oval.i-1][oval.j]) == 0){
-            System.out.println("-11");
-            nuevo[3].setText(Integer.toString((oval.i-1)*3+oval.j));
+            //System.out.println("-11");
+            nuevo[3].setText(Integer.toString((oval.i-1)*3+oval.j+1));
             nuevo[3].setSize(20, 30);
             nuevo[3].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[3].getX()+""+nuevo[3].getY());
                 ajustaTabela(oval.i, oval.j, oval.i-1, oval.j);
             }
             });
@@ -217,14 +213,13 @@ public grafico(int[][] cTab){
         }
         if(((2 >= oval.i+1) && (2 >= oval.j+1)) 
            && (Tab[oval.i+1][oval.j+1]) == 0){
-            System.out.println("+1+1");
-            nuevo[4].setText(Integer.toString((oval.i+1)*3+oval.j+1));
+            //System.out.println("+1+1");
+            nuevo[4].setText(Integer.toString((oval.i+1)*3+oval.j+1+1));
             nuevo[4].setSize(20, 30);
                 nuevo[4].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[4].getX()+""+nuevo[4].getY());
                 ajustaTabela(oval.i, oval.j, oval.i+1, oval.j+1);
             }
             });
@@ -237,14 +232,13 @@ public grafico(int[][] cTab){
         }
         if(((0 <= oval.i-1) && (0 <= oval.j-1))
            && (Tab[oval.i-1][oval.j-1]) == 0){
-            System.out.println("-1-1");
-            nuevo[5].setText(Integer.toString((oval.i-1)*3+oval.j-1));
+            //System.out.println("-1-1");
+            nuevo[5].setText(Integer.toString((oval.i-1)*3+oval.j-1+1));
             nuevo[5].setSize(20, 30);
             nuevo[5].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[5].getX()+""+nuevo[5].getY());
                 ajustaTabela(oval.i, oval.j, oval.i-1, oval.j-1);
             }
             });
@@ -257,14 +251,13 @@ public grafico(int[][] cTab){
         }
         if(((2 >= oval.i+1) && (0 <= oval.j-1))
            && (Tab[oval.i+1][oval.j-1]) == 0){
-            System.out.println("+1-1");
-            nuevo[6].setText(Integer.toString((oval.i+1)*3+oval.j-1));
+            //System.out.println("+1-1");
+            nuevo[6].setText(Integer.toString((oval.i+1)*3+oval.j-1+1));
             nuevo[6].setSize(20, 30);
             nuevo[6].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[6].getX()+""+nuevo[6].getY());
                 ajustaTabela(oval.i, oval.j, oval.i+1, oval.j-1);
             }
             });
@@ -277,14 +270,13 @@ public grafico(int[][] cTab){
         }
         if(((0 <= oval.i-1) && (2 >= oval.j+1))
            && (Tab[oval.i-1][oval.j+1]) == 0){
-            System.out.println("-1+1");
-            nuevo[7].setText(Integer.toString((oval.i-1)*3+oval.j+1));
+            //System.out.println("-1+1");
+            nuevo[7].setText(Integer.toString((oval.i-1)*3+oval.j+1+1));
             nuevo[7].setSize(20, 30);
             nuevo[7].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[7].getX()+""+nuevo[7].getY());
                 ajustaTabela(oval.i, oval.j, oval.i-1, oval.j+1);
             }
             });
@@ -300,14 +292,13 @@ public grafico(int[][] cTab){
     public void calculaTabelaPos(elipseObject oval){
          if(2 >= oval.j+1
            && (Tab[oval.i][oval.j+1]) == 0){
-            System.out.println("1+1");
-            nuevo[0].setText(Integer.toString(oval.i*3+oval.j+1));
+            //System.out.println("1+1");
+            nuevo[0].setText(Integer.toString(oval.i*3+oval.j+1+1));
             nuevo[0].setSize(20, 30);
             nuevo[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[0].getX()+""+nuevo[0].getY());
                 ajustaTabela(oval.i, oval.j, oval.i, oval.j+1);
             }
             });
@@ -320,14 +311,13 @@ public grafico(int[][] cTab){
         }
         if(0 <= oval.j-1
            && (Tab[oval.i][oval.j-1]) == 0){
-            System.out.println("1-1");
-            nuevo[1].setText(Integer.toString(oval.i*3+oval.j-1));
+            //System.out.println("1-1");
+            nuevo[1].setText(Integer.toString(oval.i*3+oval.j-1+1));
             nuevo[1].setSize(20, 30);
             nuevo[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[1].getX()+""+nuevo[1].getY());
                 ajustaTabela(oval.i, oval.j, oval.i, oval.j-1);
             }
              });  
@@ -340,14 +330,13 @@ public grafico(int[][] cTab){
         }
         if(2 >= oval.i+1  
            && (Tab[oval.i+1][oval.j]) == 0){
-            System.out.println("+11");
-            nuevo[2].setText(Integer.toString((oval.i+1)*3+oval.j));
+            //System.out.println("+11");
+            nuevo[2].setText(Integer.toString((oval.i+1)*3+oval.j+1));
             nuevo[2].setSize(20, 30);
             nuevo[2].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[2].getX()+""+nuevo[2].getY());
                 ajustaTabela(oval.i, oval.j, oval.i+1, oval.j);
             }
             });
@@ -360,14 +349,13 @@ public grafico(int[][] cTab){
         }
         if(0 <= oval.i-1
            && (Tab[oval.i-1][oval.j]) == 0){
-            System.out.println("-11");
-            nuevo[3].setText(Integer.toString((oval.i-1)*3+oval.j));
+            //System.out.println("-11");
+            nuevo[3].setText(Integer.toString((oval.i-1)*3+oval.j+1));
             nuevo[3].setSize(20, 30);
             nuevo[3].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-                System.out.println(nuevo[3].getX()+""+nuevo[3].getY());
                 ajustaTabela(oval.i, oval.j, oval.i-1, oval.j);
             }
             });
