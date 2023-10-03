@@ -10,8 +10,8 @@ package ia.pkg2;
  */
 public class Tabela {
     public int[][] Tab = {{2, 0, 1},
-						  {1, 0, 2},
-						  {2, 0, 1}};
+           		  {1, 0, 2},
+			  {2, 0, 1}};
 
     public Tabela() {
         this.Tab = Tab;
