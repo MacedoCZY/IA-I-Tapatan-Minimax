@@ -9,8 +9,7 @@ Projeto desenvolvido para matéria de Inteligencia Artificial, implementação d
 ### Especificações
 O código principal se encontra no projeto IA2.\
 O método de verificação de ganhador é feito via matriz de reccorência.\
-
-|-|-|-|-|-|-|-|-|-|
+||||||||||
 |-|-|-|-|-|-|-|-|-|
 |0|1|0|1|1|0|0|0|0|
 |1|0|1|0|1|0|0|0|0|
@@ -21,5 +20,3 @@ O método de verificação de ganhador é feito via matriz de reccorência.\
 |0|0|0|1|1|0|0|1|0|
 |0|0|0|0|1|0|1|0|1|
 |0|0|0|0|1|1|0|1|0|
-|-|-|-|-|-|-|-|-|-|
-|-|-|-|-|-|-|-|-|-|
