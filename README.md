@@ -20,3 +20,10 @@ O método de verificação de ganhador é feito via matriz de reccorência.\
 |0|0|0|1|1|0|0|1|0|
 |0|0|0|0|1|0|1|0|1|
 |0|0|0|0|1|1|0|1|0|
+
+Todas as possibilidades de jogada da máquina são geradas a partir de uma árvore.\
+Cada nó da árvore contém:
+public int[][] Tab;
+public Node pai;
+public int Profundidade = 0;
+public List<Node> filho = new ArrayList<>();
